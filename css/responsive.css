@@ -6,19 +6,24 @@
  * @Last modified time: 03-29-2019 10:52:01
  */
 
+
+/* Extra x-small devices (portrait phones, less than 576px) */
+@media (max-width: 379.98px) {
+    .display-1 {
+      font-size: 3.5rem;
+    }
+    .long-title {
+      font-size: 1.5rem;
+    }
+  }
+
 /* Extra small devices (portrait phones, less than 576px) */
-@media (max-width: 575.98px) {
+@media (min-width: 380px) and (max-width: 575.98px) {
   .display-1 {
     font-size: 3.5rem;
   }
-  .h3 {
-    font-size: 1rem;
-  }
-  .h4 {
-    font-size: 1rem;
-  }
-  .timer {
-    font-size: 4rem;
+  .long-title {
+    font-size: 1.9rem;
   }
 }
 
@@ -27,11 +32,8 @@
   .display-1 {
     font-size: 5.0rem;
   }
-  .timer {
-    font-size: 8rem;
-  }
-  .card-deck .card {
-    max-width: 240px;
+  .long-title {
+    font-size: 3rem;
   }
 }
 
@@ -43,8 +45,8 @@
   .display-1 {
     font-size: 5.0rem;
   }
-  .timer {
-    font-size: 10rem;
+  .long-title {
+    font-size: 3rem;
   }
   .card-deck .card {
     max-width: 330px;
@@ -59,11 +61,11 @@
   .display-1 {
     font-size: 5.5rem;
   }
-  .timer {
-    font-size: 15rem;
+  .long-title {
+    font-size: 3.5rem;
   }
   .card-deck .card {
-    min-width: 540px;
+    min-width: 330px;
     max-width: 540px;
   }
 }
@@ -74,17 +76,11 @@
     font-size: 1.5rem;
   }
   
-  .timer {
-    font-size: 15rem;
+  .long-title {
+    font-size: 4.5rem;
   }
   .card-deck .card {
     min-width: 540px;
     max-width: 540px;
-  }
-}
-
-@media (min-width: 768px) {
-  .navbar:not(.top-navbar) {
-    background: transparent !important;
   }
 }
