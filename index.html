@@ -24,7 +24,10 @@
     <link rel="stylesheet" href="./css/responsive.css" />
 </head>
 
-<body data-spy="scroll" data-target="#mynavbar" data-offset="10">
+<body data-spy="scroll" data-target="#mynavbar" data-offset="10" onload="closeLanguage()">
+    
+    <div id="google_translate_element" style="position: absolute; top: 0; display: none; padding-top: 0.2rem; padding-left: 2.1rem;"></div>
+    
     <header class="vh-100">
         
         <div id="home" class="welcome-area">
@@ -34,17 +37,15 @@
                         Amarillo · Canyon
                     </p>
                     <p class="display-1 px-5 text-white font-weight-bold">华人团契</p>
-
+                    
                     
                 </div>
             </div>
         </div>
-
-        <div id="change-language-div" style="width: 100%; display: none; background: #EFF5FD; height: 4rem; z-index: 100000000000;">
-            <div id="google_translate_element" style="position: absolute; top: 0; display: none; padding-top: 0.2rem; padding-left: 2.1rem;"></div>
-        </div>
-            
-
+        
+        
+        
+        
         <div class="g-tran-div" style="background: #333333; text-align: center; padding: 0.3rem; overflow: hidden;  position: fixed; bottom: 0%; left: 0%;  z-index: 10000000; margin-left: 1rem; margin-bottom: 1rem; border-radius: 1.0rem;">
             <i aria-hidden="true" class="fa fa-language" style="vertical-align: middle; font-size: 1.3rem; color: white; "></i>
             <input id="btn-english" style="vertical-align: middle; color: white; background-color: transparent; border-color: transparent; text-align: center; font-size: 1.0rem; padding: 0.1rem;" type="button" value="English">
@@ -89,7 +90,7 @@
                     <p>感谢 <a href="https://www.paramount.org/" target="_blank">Paramount Baptist Church</a> 和 <a href="https://www.fbc-canyon.org/" target="_blank">First Baptist Church Canyon</a> 对两个华人团契小组的支持！</p>
                 </div>
                 
-
+                
             </div>
         </div>
         
@@ -110,47 +111,42 @@
     <script>// <![CDATA[
         document.getElementById("btn-chinese").style.display = 'none';
         function googleTranslateElementInit() {
-              new google.translate.TranslateElement({
-              pageLanguage: 'zh-CN',
-              autoDisplay: 'yes',
-              layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL}, 
-              'google_translate_element'
-            );}
-        // ]]></script>
-        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" type="text/javascript"></script>
-        
-        <script>// <![CDATA[
-            function closeLanguage(){
-                document.getElementById("change-language-div").style.display = 'none';
-                  document.getElementById("google_translate_element").style.display = 'none';
-            }
-            window.addEventListener('load', function() {
+            new google.translate.TranslateElement({pageLanguage: 'zh-CN'}, 
+            'google_translate_element'
+            );}            // ]]>
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" type="text/javascript"></script>
+    
+    <script>// <![CDATA[
+        function closeLanguage(){
+            document.getElementById("google_translate_element").style.display = 'none';
+        }
+        window.addEventListener('load', function() {
+            
+            var select = document.querySelector(".goog-te-combo"),
+            input = document.querySelector("#btn-english");
+            inputCn = document.querySelector("#btn-chinese");
+            select.addEventListener('change',function(){
                 
-                var select = document.querySelector(".goog-te-combo"),
-                input = document.querySelector("#btn-english");
-                inputEng = document.querySelector("#btn-chinese");
-                select.addEventListener('change',function(){
+            });
             
-                });
+            input.addEventListener('click',function(){
+                select.value = 'en';
+                select.dispatchEvent(new Event('change'));
+                document.getElementById("btn-chinese").style.display = 'inline';
+                document.getElementById("btn-english").style.display = 'none';                  
+            });
+            inputCn.addEventListener('click',function(){
+                select.value = 'zh-CN';
+                select.dispatchEvent(new Event('change'));
+                document.getElementById("btn-english").style.display = 'inline';
+                document.getElementById("btn-chinese").style.display = 'none';
+                window.location.reload();                  
+            });
             
-                input.addEventListener('click',function(){
-                  select.value = 'en';
-                  select.dispatchEvent(new Event('change'));
-                  document.getElementById("btn-chinese").style.display = 'inline';
-                  document.getElementById("btn-english").style.display = 'none';
-                  document.getElementById("change-language-div").style.display = 'none';
-                  document.getElementById("google_translate_element").style.display = 'none';
-                });
-                inputEng.addEventListener('click',function(){
-                  select.value = 'zh-CN';
-                  select.dispatchEvent(new Event('change'));
-                  document.getElementById("btn-english").style.display = 'inline';
-                  document.getElementById("btn-chinese").style.display = 'none';
-                  window.location.reload();                  
-                });
-            
-            })
-            // ]]></script>    
+        })
+        // ]]>
+    </script>    
     <!-- Bootstrap core JavaScript -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script
